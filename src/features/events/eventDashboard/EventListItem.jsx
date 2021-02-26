@@ -16,7 +16,7 @@ import EventListAttendee from "./EventListAttendee";
 import EventListDescription from "./EventListDescription";
 import EventListTitle from "./EventListTitle";
 
-export default function EventListItem({ event }) {
+export default function EventListItem({ event, selectEvent, deleteEvent }) {
   return (
     <SegmentGroup>
       <Segment>
@@ -45,8 +45,19 @@ export default function EventListItem({ event }) {
         </List>
       </Segment>
       <Segment clearing>
-          <EventListDescription description={event.description} />
-        <Button color="blue" floated="right" content="View" />
+        <EventListDescription description={event.description} />
+        <Button
+          onClick={() => deleteEvent(event.id)}
+          color="red"
+          floated="right"
+          content="Delete"
+        />
+        <Button
+          onClick={() => selectEvent(event)}
+          color="blue"
+          floated="right"
+          content="View"
+        />
       </Segment>
     </SegmentGroup>
   );
