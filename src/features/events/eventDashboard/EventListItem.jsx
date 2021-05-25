@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import {
   Icon,
@@ -16,8 +17,12 @@ import {
 import EventListAttendee from "./EventListAttendee";
 import EventListDescription from "./EventListDescription";
 import EventListTitle from "./EventListTitle";
+import {deleteEvent} from "../eventActions"
 
-export default function EventListItem({ event, selectEvent, deleteEvent }) {
+export default function EventListItem({ event }) {
+
+  const dispatch = useDispatch()
+
   return (
     <SegmentGroup>
       <Segment>
@@ -48,7 +53,7 @@ export default function EventListItem({ event, selectEvent, deleteEvent }) {
       <Segment clearing>
         <EventListDescription description={event.description} />
         <Button
-          onClick={() => deleteEvent(event.id)}
+          onClick={() => dispatch(deleteEvent(event.id))}
           color="red"
           floated="right"
           content="Delete"
